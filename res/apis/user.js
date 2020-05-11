@@ -9,7 +9,7 @@ function login(data) {
 
 function getInfo() {
     return service({
-        url: '/usr-api/users/token',
+        url: '/usr-api/users/info',
         method: 'get'
     })
 }

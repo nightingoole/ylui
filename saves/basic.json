@@ -274,7 +274,7 @@
         "width": "160"
       },
       "title": "YLUI官方后台服务",
-      "url": "https://server.ylui.yuri2.cn",
+      "url": "/res/apps/server/index.html",
       "customTile": "",
       "urlRandomToken": true
     },

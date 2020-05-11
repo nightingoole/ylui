@@ -5,19 +5,46 @@
     <title>Server</title>
     <script src="../../../res/yl.app.js"></script>
     <style>
-        body{background-color: white}
+        body {
+            background-color: white
+        }
     </style>
 </head>
 <body>
-    <h1>Server</h1>
-    <script>
-        YLApp.onReady(function () {
-            var json=
+<h1>Server</h1>
 
-            YLApp.eval('import',null,function (data) {
-                console.log(YLApp.id,data)
-            })
+<!--axios-->
+<script src="../../apis/axios.js"></script>
+<script src="../../apis/request.js"></script>
+<script src="../../apis/user.js"></script>
+<!--vue-->
+<script src="../../components/vue.min.js"></script>
+
+<script>
+    const YL = parent.YL
+    YLApp.onReady(function () {
+        console.log('on server ready...')
+        let first = true
+        YLApp.onEvent(e => {
+            switch (e.event) {
+                case "dataChanged" :
+                    console.log('system on data changed:', YL.export())
+                    if (first) {
+                        first = false
+                    } else {
+                        // 上传数据到服务器
+                        uploadConfig(YL.export()).then(res => {
+                            if (res.code === 0) {
+                                console.log('data upload success...')
+                            }
+                        }).catch(err => {
+                            YLApp.eval('simpleMsg', '数据上传出错，用户数据可能会丢失')
+                        })
+                    }
+
+            }
         })
-    </script>
+    })
+</script>
 </body>
 </html>

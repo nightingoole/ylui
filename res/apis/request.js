@@ -20,7 +20,7 @@ service.interceptors.request.use(
         }
 
         if (config.url.indexOf('/users/login') !== -1) {
-            config.headers['Authorization'] = 'Basic YnJvd3NlcjoxOTk3OTg='
+            config.headers['ClientDetails'] = 'Basic YnJvd3NlcjoxOTk3OTg='
         }
 
         else if (localStorage.getItem('Authorization')) {

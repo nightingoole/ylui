@@ -1,4 +1,5 @@
 var YL = parent.YL;
+console.log('in yl system log')
 YLApp.onReady(function () {
     YLApp.onEvent(function (e) {
         switch (e.event) {
@@ -12,19 +13,6 @@ YLApp.onReady(function () {
                     vue.appSetting.icon.bg = color;
                 }
                 break;
-            case "dataChanged" :
-                if(e.from===0){
-                    vue.ondataChanged();
-                }
-                console.log('yl-system on data changed:', e)
-                // 上传数据到服务器
-                uploadConfig(YL.export()).then( res => {
-                    if (res.code === 0) {
-                        console.log('data upload success...')
-                    }
-                }).catch( err => {
-                    YLApp.eval('simpleMsg', '数据上传出错，用户数据可能会丢失')
-                })
         }
     });
 
